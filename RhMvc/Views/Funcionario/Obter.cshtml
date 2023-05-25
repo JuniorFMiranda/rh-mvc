@@ -1,0 +1,49 @@
+@model IEnumerable<RhMvc.Models.Funcionario>;
+
+@{
+    ViewData["Title"] = "Lista de funcionários";
+}    
+
+<h1>Lista de funcionários</h1>
+
+<a asp-action="Criar">Novo</a>
+
+<hr/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(x => x.Id)   
+            </th>
+            <th>
+                @Html.DisplayNameFor(x => x.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(x => x.Documento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Documento)
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Visualizar" asp-route-id="@item.Id">Visualizar</a> |
+                    <a asp-action="Excluir" asp-route-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
