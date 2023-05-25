@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RhMvc.Context;
+using RhMvc.Models;
 
 namespace RhMvc.Controllers
 {
@@ -16,11 +17,25 @@ namespace RhMvc.Controllers
             _context = context;
         }
 
-        public IActionResult Obter()
+        public IActionResult Index()
         {
             var funcionarios = _context.Funcionario.ToList();
 
             return View(funcionarios);
+        }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
+                
+        [HttpPost]
+        public IActionResult Criar(Funcionario funcionario)
+        {
+            _context.Funcionario.Add(funcionario);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

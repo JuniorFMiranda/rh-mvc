@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace RhMvc.Models
 {
-    public class Funcionario : Pessoa
+    public sealed class Funcionario : Pessoa
     {
         public decimal Salario { get; set; }        
-        public EnumStatusFuncionario Status { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime DataAdmissao { get; set; }
     }
 }
